@@ -1,4 +1,4 @@
-//JS isnt scary lol you got THIS 
+//Lets do this! 
 
 class Tomagotchi {
     constructor(name) {
@@ -9,5 +9,5 @@ class Tomagotchi {
       this.health = 100;
     }
 }
-    // The rest of the code and behaviors can be added after this
+
   

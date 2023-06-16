@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tomagotchi</title>
+  <title>Tomagotchi Pet</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <div id="stats">
-    <h2>Stats:</h2>
-    <p id="petName">Name: </p>
-    <p id="hunger">I'm Hungry: </p>
-    <p id="happiness">Be Happy: </p>
-    <p id="cleanliness">Clean: </p>
-    <p id="health">Healthy: </p>
-  </div>
-
-  <div id="actions">
-    <button id="feedButton">Feed</button>
-    <button id="playButton">Play</button>
-    <button id="sleepButton">Sleep</button>
-    <button id="cleanButton">Clean</button>
-    <button id="medicButton">Health</button>
+  <div class="pet-container">
+    <div class="cat"></div>
+    <div class="stats">
+      <h2>Tomagotchi Pet</h2>
+      <p>Name: <span id="name"></span></p>
+      <p>Hunger: <span id="hunger"></span></p>
+      <p>Happiness: <span id="happiness"></span></p>
+      <p>Cleanliness: <span id="cleanliness"></span></p>
+      <p>Health: <span id="health"></span></p>
+      <div class="actions">
+        <button id="feed-btn">Feed</button>
+        <button id="play-btn">Play</button>
+        <button id="sleep-btn">Sleep</button>
+        <button id="clean-btn">Clean</button>
+        <button id="medic-btn">Medic</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
