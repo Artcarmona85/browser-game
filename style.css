@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #stats {
+    float: left;
+    margin-right: 30px;
+  }
+  
+  #actions {
+    clear: both;
+    margin-top: 20px;
+  }
+  
+  button {
+    margin-right: 10px;
+  }
+  
