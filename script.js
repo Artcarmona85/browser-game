@@ -1,4 +1,4 @@
-//JS isnt scary lol YOU GOT THIS 
+//JS isnt scary lol you got THIS 
 
 class Tomagotchi {
     constructor(name) {
