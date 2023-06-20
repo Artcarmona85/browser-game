@@ -66,32 +66,46 @@ nameInput.addEventListener('input', function (event) {
 
 // Event listeners for the action buttons
 feedButton.addEventListener('click', function () {
-  pet.hunger += 10;
-  updateStats();
+  if (pet.hunger < 100) {
+    pet.hunger += getRandomNumber(5, 10);
+    performRandomEvent();
+  }
 });
 
 playButton.addEventListener('click', function () {
-  pet.happiness += 10;
-  updateStats();
+  if (pet.happiness < 100) {
+    pet.happiness += getRandomNumber(5, 10);
+    performRandomEvent();
+  }
 });
 
 sleepButton.addEventListener('click', function () {
-  pet.health += 10;
-  updateStats();
+  if (pet.health < 100) {
+    pet.health += getRandomNumber(5, 10);
+    performRandomEvent();
+  }
 });
 
 cleanButton.addEventListener('click', function () {
-  pet.cleanliness += 10;
-  updateStats();
+  if (pet.cleanliness < 100) {
+    pet.cleanliness += getRandomNumber(5, 10);
+    performRandomEvent();
+  }
 });
 
 medicButton.addEventListener('click', function () {
-  pet.health += 10;
-  updateStats();
+  if (pet.health < 100) {
+    pet.health += getRandomNumber(5, 10);
+    performRandomEvent();
+  }
 });
 
-// Set up random events to occur every few seconds
-setInterval(performRandomEvent, 5000);
+// Function to update the pet's stats periodically
+function updateStatsPeriodically() {
+  setInterval(() => {
+    performRandomEvent();
+  }, 5000); // Every 5 seconds
+}
 
-// Initialize the pet's stats
 updateStats();
+updateStatsPeriodically();
