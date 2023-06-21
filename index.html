@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tomagotchi Pet</title>
+  <title>Tamagotchi Game</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <div class="pet-container">
-    <div class="cat"></div>
-    <div class="stats">
-      <h2>Tomagotchi Pet</h2>
-      <p>Name: <span id="name"></span></p>
-      <p>Hunger: <span id="hunger"></span></p>
-      <p>Happiness: <span id="happiness"></span></p>
-      <p>Cleanliness: <span id="cleanliness"></span></p>
-      <p>Health: <span id="health"></span></p>
-      <div class="actions">
-        <label for="name-input">Name:</label>
-        <input type="text" id="name-input">
-        <button id="feed-btn">Feed</button>
-        <button id="play-btn">Play</button>
-        <button id="sleep-btn">Sleep</button>
-        <button id="clean-btn">Clean</button>
-        <button id="medic-btn">Medic</button>
+  <div class="game-container">
+    <div class="tamagotchi-container">
+      <div class="tamagotchi"></div>
+      <div class="scores">
+        <p>Boredom: <span class="bored-score">0</span></p>
+        <p>Hunger: <span class="hunger-score">0</span></p>
+        <p>Sleepiness: <span class="sleepiness-score">0</span></p>
       </div>
+    </div>
+    <div class="buttons">
+      <button class="play-btn">Play</button>
+      <button class="feed-btn">Feed</button>
+      <button class="bed-btn">Bed</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal">
+    <div class="modal-content">
+      <div class="modal-tamagotchi"></div>
+      <p>Game Over! Your Tamagotchi has died.</p>
+      <button class="start-btn">Start Over</button>
+    </div>
+  </div>
+
+  <!-- Win Modal -->
+  <div class="win-modal">
+    <div class="win-modal-content">
+      <div class="win-message">Congratulations! You won the game!</div>
+      <button class="play-again-btn">Play Again</button>
     </div>
   </div>
 

@@ -1,111 +1,146 @@
-// Get references to the HTML elements
-const nameElement = document.getElementById('name');
-const hungerElement = document.getElementById('hunger');
-const happinessElement = document.getElementById('happiness');
-const cleanlinessElement = document.getElementById('cleanliness');
-const healthElement = document.getElementById('health');
-const nameInput = document.getElementById('name-input');
-const feedButton = document.getElementById('feed-btn');
-const playButton = document.getElementById('play-btn');
-const sleepButton = document.getElementById('sleep-btn');
-const cleanButton = document.getElementById('clean-btn');
-const medicButton = document.getElementById('medic-btn');
+// QUERY SELECTORS
+const playBtn = document.querySelector('.play-btn');
+const feedBtn = document.querySelector('.feed-btn');
+const bedBtn = document.querySelector('.bed-btn');
+const startBtn = document.querySelector('.start-btn');
+const playAgainBtn = document.querySelectorAll('.play-again-btn');
 
-// Set initial values
-let pet = {
-  name: '',
-  hunger: 100,
-  happiness: 100,
-  cleanliness: 100,
-  health: 100
+// SCORES
+const boredScore = document.querySelector('.bored-score');
+const hungerScore = document.querySelector('.hunger-score');
+const sleepinessScore = document.querySelector('.sleepiness-score');
+
+// TAMAGOTCHI OBJECT
+const tamagotchi = {
+  bored: 0,
+  hunger: 0,
+  sleepiness: 0,
+  emotions: {
+    happy: "url('https://i.imgur.com/xPMy48I.jpg')",
+    bothered: "url('https://i.imgur.com/yJcMJfs.jpg')",
+    eating: "url('https://i.imgur.com/5oL3H8N.jpg')",
+    playing: "url('https://i.imgur.com/xPMy48I.jpg')",
+    sleeping: "url('https://i.imgur.com/edsrXmy.jpg')",
+    gameOver: "url('https://i.imgur.com/aylUGU8.jpg')",
+  },
+  iLive() {
+    // bored timer
+    const boredInterval = setInterval(() => { this.bored += 1 }, 1000);
+    // hungry timer
+    const hungryInterval = setInterval(() => { this.hunger += 2 }, 5000);
+    // sleepy timer
+    const sleepyInterval = setInterval(() => { this.sleepiness += 14 }, 10000);
+    // condition timer
+    const conditionInterval = setInterval(() => {
+      boredScore.innerText = this.bored;
+      hungerScore.innerText = this.hunger;
+      sleepinessScore.innerText = this.sleepiness;
+    }, 16.7);
+
+    // alive timer
+    const aliveInterval = setInterval(() => {
+      // check if tamagotchi is about to die
+      if (this.hunger > 50 || this.bored > 50 || this.sleepiness > 50) {
+        // DOM to flip-table
+        document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.gameOver;
+      } else if (this.hunger > 30 || this.bored > 30 || this.sleepiness > 30) {
+        // dom to bothered
+        document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.bothered;
+      } else {
+        // dom to happy
+        document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.happy;
+      }
+
+      // check if the tamagotchi is alive
+      if (this.hunger >= 60 || this.bored >= 60 || this.sleepiness >= 60) {
+        // DOM to flip-table
+        document.querySelector('.modal-tamagotchi').style.backgroundImage = this.emotions.gameOver;
+        clearInterval(winGame);
+        clearInterval(boredInterval);
+        clearInterval(hungryInterval);
+        clearInterval(sleepyInterval);
+        clearInterval(conditionInterval);
+        clearInterval(aliveInterval);
+        // the reset
+        document.querySelector('.modal').style.display = "flex";
+        this.bored = 0;
+        this.hunger = 0;
+        this.sleepiness = 0;
+        document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.happy;
+      }
+    }, 1000);
+
+    // game win timer
+    const winGame = setTimeout(() => {
+      document.querySelector('.win-modal').style.display = "flex";
+      clearInterval(boredInterval);
+      clearInterval(hungryInterval);
+      clearInterval(sleepyInterval);
+      clearInterval(conditionInterval);
+      clearInterval(aliveInterval);
+      // the reset
+      document.querySelector('.modal').style.display = "flex";
+      this.bored = 0;
+      this.hunger = 0;
+      this.sleepiness = 0;
+      document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.happy;
+    }, 60000);
+  },
+  feedMe() {
+    if (this.hunger > 0) {
+      this.hunger -= 1;
+    }
+  },
+  playWithMe() {
+    if (this.bored > 0) {
+      this.bored -= 1;
+      this.hunger += 2;
+    }
+  },
+  sendMeToBed() {
+    if (this.sleepiness > 0) {
+      this.sleepiness -= 1;
+    }
+  },
 };
 
-// Function to update the pet's stats in the HTML
-function updateStats() {
-  nameElement.textContent = pet.name;
-  hungerElement.textContent = pet.hunger;
-  happinessElement.textContent = pet.happiness;
-  cleanlinessElement.textContent = pet.cleanliness;
-  healthElement.textContent = pet.health;
-}
+// starting the game
+const start = () => {
+  tamagotchi.iLive();
+  document.querySelector('.modal').style.display = "none";
+  document.querySelector('.win-modal').style.display = "none";
+};
 
-// Function to generate a random number within a range
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// DOM change Tamagotchi based on button clicks && goes back to happy after setTimeout
+const eating = () => {
+  document.querySelector('.tamagotchi').style.backgroundImage = tamagotchi.emotions.eating;
+};
 
-// Function to perform random events
-function performRandomEvent() {
-  const randomEvent = getRandomNumber(1, 4);
+const sleeping = () => {
+  document.querySelector('.tamagotchi').style.backgroundImage = tamagotchi.emotions.sleeping;
+};
 
-  switch (randomEvent) {
-    case 1: // Hunger event
-      pet.hunger -= getRandomNumber(5, 10);
-      break;
-    case 2: // Happiness event
-      pet.happiness -= getRandomNumber(5, 10);
-      break;
-    case 3: // Cleanliness event
-      pet.cleanliness -= getRandomNumber(5, 10);
-      break;
-    case 4: // Health event
-      pet.health -= getRandomNumber(5, 10);
-      break;
-    default:
-      break;
-  }
+const playing = () => {
+  document.querySelector('.tamagotchi').style.backgroundImage = tamagotchi.emotions.playing;
+};
 
-  updateStats();
-}
-
-// Event listener for the Name input field
-nameInput.addEventListener('input', function (event) {
-  pet.name = event.target.value;
-  updateStats();
+// EVENT LISTENERS
+startBtn.addEventListener("click", start);
+playAgainBtn.forEach((btn) => {
+  btn.addEventListener("click", start);
 });
 
-// Event listeners for the action buttons
-feedButton.addEventListener('click', function () {
-  if (pet.hunger < 100) {
-    pet.hunger += getRandomNumber(5, 10);
-    performRandomEvent();
-  }
+feedBtn.addEventListener("click", () => {
+  tamagotchi.feedMe();
+  eating();
 });
 
-playButton.addEventListener('click', function () {
-  if (pet.happiness < 100) {
-    pet.happiness += getRandomNumber(5, 10);
-    performRandomEvent();
-  }
+playBtn.addEventListener("click", () => {
+  tamagotchi.playWithMe();
+  playing();
 });
 
-sleepButton.addEventListener('click', function () {
-  if (pet.health < 100) {
-    pet.health += getRandomNumber(5, 10);
-    performRandomEvent();
-  }
+bedBtn.addEventListener("click", () => {
+  tamagotchi.sendMeToBed();
+  sleeping();
 });
-
-cleanButton.addEventListener('click', function () {
-  if (pet.cleanliness < 100) {
-    pet.cleanliness += getRandomNumber(5, 10);
-    performRandomEvent();
-  }
-});
-
-medicButton.addEventListener('click', function () {
-  if (pet.health < 100) {
-    pet.health += getRandomNumber(5, 10);
-    performRandomEvent();
-  }
-});
-
-// Function to update the pet's stats periodically
-function updateStatsPeriodically() {
-  setInterval(() => {
-    performRandomEvent();
-  }, 5000); // Every 5 seconds
-}
-
-updateStats();
-updateStatsPeriodically();
