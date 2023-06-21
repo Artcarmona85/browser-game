@@ -2,7 +2,7 @@
 const playBtn = document.querySelector('.play-btn');
 const feedBtn = document.querySelector('.feed-btn');
 const bedBtn = document.querySelector('.bed-btn');
-const startBtn = document.querySelector('.start-btn');
+const startBtn = document.querySelector('.buttons .start-btn');
 const playAgainBtn = document.querySelectorAll('.play-again-btn');
 
 // SCORES
@@ -16,12 +16,12 @@ const tamagotchi = {
   hunger: 0,
   sleepiness: 0,
   emotions: {
-    happy: "url('https://i.imgur.com/xPMy48I.jpg')",
-    bothered: "url('https://i.imgur.com/yJcMJfs.jpg')",
-    eating: "url('https://i.imgur.com/5oL3H8N.jpg')",
-    playing: "url('https://i.imgur.com/xPMy48I.jpg')",
-    sleeping: "url('https://i.imgur.com/edsrXmy.jpg')",
-    gameOver: "url('https://i.imgur.com/aylUGU8.jpg')",
+    happy: "url('https://i.imgur.com/lhtSXoJ.png')",
+    bothered: "url('https://i.imgur.com/yJcMJfs.png')",
+    eating: "url('https://i.imgur.com/5oL3H8N.png')",
+    playing: "url('https://i.imgur.com/xPMy48I.png')",
+    sleeping: "url('https://i.imgur.com/edsrXmy.png')",
+    gameOver: "url('https://i.imgur.com/aylUGU8.png')",
   },
   iLive() {
     // bored timer
