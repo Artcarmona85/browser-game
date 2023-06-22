@@ -31,12 +31,12 @@ body {
 
 .scores p {
   margin-bottom: 5px;
-  color: #3c3b6e; /* Navy Blue */
+  color: #3c3b6e;
 }
 
 .scores span {
   font-weight: bold;
-  color: #e30a17; /* Red */
+  color: #e30a17;
 }
 
 .buttons {
@@ -50,12 +50,12 @@ body {
   margin: 5px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #3c3b6e; /* Navy Blue */
+  background-color: #3c3b6e;
   color: #fff;
 }
 
 .buttons button:hover {
-  background-color: #e30a17; /* Red */
+  background-color: #e30a17; 
 }
 
 .modal,
@@ -82,12 +82,12 @@ body {
 .win-modal button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #3c3b6e; /* Navy Blue */
+  background-color: #3c3b6e; 
   color: #fff;
   border: none;
 }
 
 .modal button:hover,
 .win-modal button:hover {
-  background-color: #e30a17; /* Red */
+  background-color: #e30a17; 
 }

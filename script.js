@@ -1,16 +1,16 @@
-// QUERY SELECTORS
+//Buttons js
 const playBtn = document.querySelector('.play-btn');
 const feedBtn = document.querySelector('.feed-btn');
 const bedBtn = document.querySelector('.bed-btn');
 const startBtn = document.querySelector('.buttons .start-btn');
 const playAgainBtn = document.querySelectorAll('.play-again-btn');
 
-// SCORES
+// scores to keep track 
 const boredScore = document.querySelector('.bored-score');
 const hungerScore = document.querySelector('.hunger-score');
 const sleepinessScore = document.querySelector('.sleepiness-score');
 
-// TAMAGOTCHI OBJECT
+//  Pics when you press the button 
 const tamagotchi = {
   bored: 0,
   hunger: 0,
@@ -39,21 +39,29 @@ const tamagotchi = {
 
     // alive timer
     const aliveInterval = setInterval(() => {
+
+
       // check if tamagotchi is about to die
       if (this.hunger > 50 || this.bored > 50 || this.sleepiness > 50) {
-        // DOM to flip-table
+       
         document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.gameOver;
       } else if (this.hunger > 30 || this.bored > 30 || this.sleepiness > 30) {
-        // dom to bothered
+
+
+        // bothered
         document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.bothered;
       } else {
-        // dom to happy
+
+
+        // happy
         document.querySelector('.tamagotchi').style.backgroundImage = this.emotions.happy;
       }
 
-      // check if the tamagotchi is alive
+      // check if its alive
       if (this.hunger >= 60 || this.bored >= 60 || this.sleepiness >= 60) {
-        // DOM to flip-table
+
+
+        // Some more dom even tho is a bitch .......
         document.querySelector('.modal-tamagotchi').style.backgroundImage = this.emotions.gameOver;
         clearInterval(winGame);
         clearInterval(boredInterval);
@@ -78,7 +86,8 @@ const tamagotchi = {
       clearInterval(sleepyInterval);
       clearInterval(conditionInterval);
       clearInterval(aliveInterval);
-      // the reset
+      
+      //reset
       document.querySelector('.modal').style.display = "flex";
       this.bored = 0;
       this.hunger = 0;
@@ -111,7 +120,7 @@ const start = () => {
   document.querySelector('.win-modal').style.display = "none";
 };
 
-// DOM change Tamagotchi based on button clicks && goes back to happy after setTimeout
+// button clicks and game  goes back to happy
 const eating = () => {
   document.querySelector('.tamagotchi').style.backgroundImage = tamagotchi.emotions.eating;
 };
@@ -124,7 +133,7 @@ const playing = () => {
   document.querySelector('.tamagotchi').style.backgroundImage = tamagotchi.emotions.playing;
 };
 
-// EVENT LISTENERS
+// listeners 
 startBtn.addEventListener("click", start);
 playAgainBtn.forEach((btn) => {
   btn.addEventListener("click", start);
