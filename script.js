@@ -69,7 +69,7 @@ const tamagotchi = {
         clearInterval(sleepyInterval);
         clearInterval(conditionInterval);
         clearInterval(aliveInterval);
-        // the reset
+        // the reset hope it works
         document.querySelector('.modal').style.display = "flex";
         this.bored = 0;
         this.hunger = 0;
@@ -153,3 +153,6 @@ bedBtn.addEventListener("click", () => {
   tamagotchi.sendMeToBed();
   sleeping();
 });
+
+// https://docs.google.com/presentation/d/1wwOEtI6X9uAczT4fYyoceDlDMRLGF7G0VqiCMY6nggQ/edit#slide=id.p
+// To see how I wanted to start this thing 
